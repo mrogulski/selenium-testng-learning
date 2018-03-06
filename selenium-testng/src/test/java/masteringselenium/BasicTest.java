@@ -1,5 +1,6 @@
 package masteringselenium;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,6 +35,8 @@ public class BasicTest extends DriverFactory{
 	@Test
 	public void googleCheeseExample() throws Exception{
 		googleSearching("Cheese");
+		
+		Assert.assertTrue(false);
 	}
 	
 	@Test

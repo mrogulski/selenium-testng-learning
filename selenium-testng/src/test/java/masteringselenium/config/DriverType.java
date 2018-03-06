@@ -5,13 +5,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public enum DriverType implements DriverSetup {
 
@@ -23,6 +25,9 @@ public enum DriverType implements DriverSetup {
 
 		public DesiredCapabilities getDesiredCapabilities() {
             DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+            //temporary solution
+            capabilities.setBrowserName("firefox");
+            capabilities.setCapability("firefox_binary", "C:\\Users\\mrogulski001\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
             return capabilities;
 		}
     },
@@ -77,6 +82,22 @@ public enum DriverType implements DriverSetup {
             DesiredCapabilities capabilities = DesiredCapabilities.operaBlink();
             return capabilities;
 		}
+    },
+    
+    PHANTOMJS {
+    	public DesiredCapabilities getDesiredCapabilities() {
+    		DesiredCapabilities capabilities = DesiredCapabilities.phantomjs();
+    		final List<String> cliArguments = new ArrayList<String>();
+    		cliArguments.add("--web-security=false");
+    		cliArguments.add("--ssl-protocol=any");
+    		cliArguments.add("--ignore-ssl-errors=true");
+    		capabilities.setCapability("phantomjs.cli.args",cliArguments);
+    		capabilities.setCapability("takesScreenshot", true);
+    		return capabilities;
+    	}
+    	public WebDriver getWebDriverObject(DesiredCapabilities capabilities) {
+    		return new PhantomJSDriver(capabilities);
+    	}
     };
 
 }

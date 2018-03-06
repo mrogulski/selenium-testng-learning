@@ -9,6 +9,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import listeners.ScreenshotListener;
+import org.testng.annotations.Listeners;
+
+
+@Listeners(ScreenshotListener.class)
 public class DriverFactory {
 	//class to get valid WebDriver instance instead of instantiating new chrome instance
 
