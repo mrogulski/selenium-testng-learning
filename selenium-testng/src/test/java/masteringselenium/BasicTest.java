@@ -3,6 +3,7 @@ package masteringselenium;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,7 +13,7 @@ public class BasicTest {
 	
 	private void googleSearching(final String searchString) {
 		
-		WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new ChromeDriver();
 		driver.get("http://www.google.com");
 		WebElement searchField = driver.findElement(By.name("q"));
 		searchField.clear();
@@ -31,13 +32,15 @@ public class BasicTest {
 	}
 	
 	@Test
-	public void googleCheeseExample() {
+	public void googleCheeseExample() throws InterruptedException {
 		googleSearching("Cheese");
+		Thread.sleep(5000);
 	}
 	
 	@Test
-	public void googleMilkExample() {
+	public void googleMilkExample() throws InterruptedException {
 		googleSearching("Milk");
+		Thread.sleep(5000);
 	}
 
 }

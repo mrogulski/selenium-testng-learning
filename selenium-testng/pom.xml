@@ -1,23 +1,66 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.masteringselenium</groupId>
   <artifactId>selenium-testng</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  	
+  	<!-- tests in parallel -->
+  	<threads>1</threads>
+  </properties>
+  
+  <build>
+  	<plugins>
+  	<!-- to run test in parallel with parametrization-->
+  		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-failsafe-plugin</artifactId>
+			<version>2.17</version>
+			<configuration>
+			<!-- parallel is set to methods -->
+				<parallel>methods</parallel>
+				<threadCount>${threads}</threadCount>
+				<includes>
+				<!-- files to include -->
+					<include>**/*Test.java</include>
+				</includes>
+			</configuration>
+			<executions>
+				<execution>
+					<goals>
+						<goal>integration-test</goal>
+						<goal>verify</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+  	</plugins>
+  </build>
+  
   <dependencies>
+  
   	<dependency>
   		<groupId>org.seleniumhq.selenium</groupId>
   		<artifactId>selenium-java</artifactId>
   		<version>3.9.1</version>
   	</dependency>
+  	
   	<dependency>
   		<groupId>org.seleniumhq.selenium</groupId>
   		<artifactId>selenium-remote-driver</artifactId>
   		<version>3.9.1</version>
   	</dependency>
+  	
   	<dependency>
   		<groupId>org.testng</groupId>
   		<artifactId>testng</artifactId>
   		<version>6.14.2</version>
   	</dependency>
+  	
   </dependencies>
+  
 </project>
