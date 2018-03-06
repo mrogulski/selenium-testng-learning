@@ -28,7 +28,7 @@ public class BasicTest extends DriverFactory{
 		});
 		
 		System.out.println("Page title is: " + driver.getTitle());
-		driver.quit();
+
 	}
 	
 	@Test
