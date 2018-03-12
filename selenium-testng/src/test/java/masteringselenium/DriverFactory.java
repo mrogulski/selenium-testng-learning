@@ -10,6 +10,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import listeners.ScreenshotListener;
+import page_objects.DashboardPage;
+
 import org.testng.annotations.Listeners;
 
 
@@ -19,6 +21,8 @@ public class DriverFactory {
 
 	private static List<WebDriverThread> webDriverThreadPool = Collections.synchronizedList(new ArrayList<WebDriverThread>());
 	private static ThreadLocal<WebDriverThread> driverThread;
+	
+	protected DashboardPage dashboardPage;
 	
 	@BeforeSuite
 	public static void instantiateDricerObject() {
